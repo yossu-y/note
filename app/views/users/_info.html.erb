@@ -1,35 +1,22 @@
 <table class='table'>
-  <tr>
-    <th rowspan="4"><%= image_tag user.get_profile_image,　class:"rounded-circle", size:"100x100" %></th>
+  <tr align="center">
+    <th rowspan="4"><%= image_tag user.get_profile_image,　class:"user-icon", size:"100x100" %></th>
   </tr>
   <tr>
-	  <th><%= user.name %></th>
+	  <th style="font-size:25px"><%= user.name %></th>
 	</tr>
 	<tr>
-	  <th><%= user.introduction %></th>
+	  <th style="border:none"><%= user.introduction %></th>
 	</tr>
 	<tr>
-    <th>
-      <%= link_to user_followings_path(user) do %>
-        <%= user.followings.count %>
-      <% end %> フォロー
-      <%= link_to user_followers_path(user) do %>
-        <%= user.followers.count %>
-      <% end %> フォロワー
+    <th style="border:none">
+      <%= link_to user_followings_path(user), class: "text-dark" do %>
+        <%= user.followings.count %> フォロー&ensp;
+      <% end %>
+      <%= link_to user_followers_path(user), class: "text-dark" do %>
+        <%= user.followers.count %> フォロワー
+      <% end %>
     </th>
   </tr>
 </table>
 
-<div class='row'>
-  <% if user != current_user %>
-    <% if current_user.following?(user) %>
-      <%= link_to "フォロー外す", user_relationships_path(user.id), class: "btn btn-info btn-sm btn-block", method: :delete %>
-    <% else %>
-      <%= link_to "フォローする", user_relationships_path(user.id), class: "btn btn-info btn-sm btn-block", method: :post %>
-    <% end %>
-  <% else %>
-     <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
-      <i class="fas fa-user-cog"></i>
-     <% end %>
-  <% end %>
-</div>
