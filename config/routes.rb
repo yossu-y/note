@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
-  get 'users/edit'
-  get 'articles/index'
-  get 'articles/new'
-  get 'articles/show'
-  get 'articles/edit'
+
   devise_for :users
-  get 'homes/top'
+
+  root to: "homes#top"
+
+  resources :articles, only: [:index,:show,:edit,:create,:destroy,:update] do
+    resources :article_comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+  end
+
+  resources :users, only: [:index,:show,:edit,:update] do
+    resource :relationships, only: [:create, :destroy]
+    get "followings" => 'relationships#followings',as: "followings"
+    get "followers" => 'relationships#followers',as: "followers"
+  end
+
+  get "search" => "searches#search",as: "search"
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
