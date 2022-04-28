@@ -1,9 +1,10 @@
 <table class='table'>
   <tr align="center">
-    <th rowspan="4"><%= image_tag user.get_profile_image,　class:"user-icon", size:"100x100" %></th>
+    <th rowspan="4"><%= image_tag user.get_profile_image, class:"rounded-circle", size:"110x110" %></th>
   </tr>
   <tr>
 	  <th style="font-size:25px"><%= user.name %></th>
+	  <th><%= render "users/follow", user: user %></th>
 	</tr>
 	<tr>
 	  <th style="border:none"><%= user.introduction %></th>
