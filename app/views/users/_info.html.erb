@@ -1,27 +1,21 @@
 <table class='table'>
-  <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
   <tr>
-	  <th>name</th>
+    <th rowspan="4"><%= image_tag user.get_profile_image,　class:"rounded-circle", size:"100x100" %></th>
+  </tr>
+  <tr>
 	  <th><%= user.name %></th>
-  </tr>
-  <tr>
-	  <th>introduction</th>
+	</tr>
+	<tr>
 	  <th><%= user.introduction %></th>
-  </tr>
-  <tr>
-    <th>follows</th>
+	</tr>
+	<tr>
     <th>
       <%= link_to user_followings_path(user) do %>
         <%= user.followings.count %>
-      <% end %>
-    </th>
-  </tr>
-  <tr>
-    <th>followers</th>
-    <th>
+      <% end %> フォロー
       <%= link_to user_followers_path(user) do %>
         <%= user.followers.count %>
-      <% end %>
+      <% end %> フォロワー
     </th>
   </tr>
 </table>
