@@ -22,7 +22,7 @@
         <th style="width:30%">body</th>
       </tr>
       <tr>
-        <td><%= image_tag article.user.get_profile_image, size: '50x50' %></td>
+        <td><%= image_tag article.user.get_profile_image, size: "50x50" %></td>
         <td><%= link_to "#{article.title}", article_path(article) %></td>
         <td><%= article.body %></td>
       </tr>
