@@ -24,6 +24,11 @@
               <i class="fa-solid fa-pen"></i> &ensp;投稿
             <% end %>
           </li>
+          <li>
+            <%=  link_to user_path(current_user), class: "nav-link text-light" do %>
+              プロフィール画像を挿入
+            <% end %>
+          </li>
 
           <li>
             <%=  link_to users_path, class: "nav-link text-light" do %>
@@ -32,7 +37,7 @@
           </li>
 
           <li>
-            <%=  link_to articles_path , class: "nav-link text-light" do %>
+            <%=  link_to articles_path, class: "nav-link text-light" do %>
               <i class="fas fa-book-open"></i> articles
             <% end %>
           </li>

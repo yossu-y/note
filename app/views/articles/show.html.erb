@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-8 offset-md-1">
+    <div class="col-md-10 offset-md-1">
   		<h4>公開された記事</h4>
   		<table class="table">
   		  <tr>
@@ -21,26 +21,29 @@
           </th>
   		  </tr>
   		  <tr>
-          <th rowspan="2"><%= link_to (@article.user) do %>
+          <th rowspan="2" width="10%"><%= link_to (@article.user) do %>
             <%= image_tag @article.user.get_profile_image, class:"rounded-circle" , size:"50x50" %><br>
             <% end %>
           </th>
-          <th>
+          <th width="50%">
             <%= @article.user.name %>
           </th>
         </tr>
         <tr>
-          <th style="border:none">
+          <th style="border:none" width="50%">
             <%= @article.created_at.strftime("%Y-%m-%d %H:%M") %>
           </th>
         </tr>
-
-          <th><%= @article.body %></th>
-
-          <th>コメント数:<%= @article.article_comments.count %></th>
+        <tr>
+          <th colspan="2"><%= @article.body %></th>
+        </tr>
+        <tr>
+          <th width="50%">コメント数:<%= @article.article_comments.count %></th>
           <% if @article.user == current_user %>
-            <th><%= link_to "Edit", edit_article_path(@article), class: "btn btn-sm btn-success edit_article_#{@article.id}" %></th>
-            <th><%= link_to "Destroy", @article, method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-sm btn-danger destroy_article_#{@article.id}"%></th>
+            <th width="10%" align="right">
+              <%= link_to "編集", edit_article_path(@article), class: "btn btn-sm btn-success edit_article_#{@article.id}" %>
+              <%= link_to "削除", @article, method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-sm btn-danger destroy_article_#{@article.id}"%>
+            </th>
           <% end %>
         </tr>
       </table>

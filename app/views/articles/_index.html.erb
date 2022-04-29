@@ -1,23 +1,22 @@
 <div class="container">
 <div class="row">
-
-<table class="table table-hover table-inverse">
+<table class="table table-hover table-inverse" >
     <% articles.each do |article| %>
       <tr>
-        <td rowspan="2"><%= link_to(article.user) do %>
+        <td rowspan="2" width="20%"><%= link_to(article.user) do %>
           <%= image_tag article.user.get_profile_image, class:"rounded-circle", size:"50x50" %>
           <% end %>
         </td>
-        <td ><%= article.user.name %></td>
+        <td><%= article.user.name %></td>
       </tr>
       <tr>
         <td style="border:none"><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
       <tr>
-        <td><%= link_to article.title,article, class: "article_#{article.id}" %></td>
+        <td colspan="2"><%= link_to article.title,article, class: "article_#{article.id}" %></td>
       </tr>
       <tr>
-        <td><%= article.body %></td>
+        <td colspan="2"><%= article.body %></td>
       </tr>
       <tr>
         <td>

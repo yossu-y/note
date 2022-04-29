@@ -6,7 +6,7 @@ class ArticleCommentsController < ApplicationController
     @article_comment = current_user.article_comments.new(article_comment_params)
     @article_comment.article_id = @article.id
     if @article_comment.save
-      redirect_to article_path(@article), notice: "You have created article successfully."
+      redirect_to article_path(@article), notice: "記事が公開されました。"
     else
       redirect_to article_path(@article), notice: "comment can't be blank"
     end
