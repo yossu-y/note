@@ -15,8 +15,15 @@
         <ul class="navbar-nav ml-auto">
 
         <% if user_signed_in? %>
+          <li>
+            <%= render "searches/search" %>&ensp;&ensp;<br>
+          </li>
 
-          <%= render "searches/search" %>
+          <li>
+            <%=  link_to new_article_path, class: "text-light btn btn-success btn-sm" do %>
+              <i class="fa-solid fa-pen"></i> &ensp;投稿
+            <% end %>
+          </li>
 
           <li>
             <%=  link_to users_path, class: "nav-link text-light" do %>
