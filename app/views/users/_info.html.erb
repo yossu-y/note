@@ -1,6 +1,6 @@
 <table class="table">
   <tr align="center">
-    <th rowspan="4"><%= image_tag user.get_profile_image, class:"rounded-circle", size:"110x110" %></th>
+    <th rowspan="4" width="10%"><%= image_tag user.get_profile_image, class:"rounded-circle", size:"110x110" %></th>
   </tr>
   <tr>
 	  <th style="font-size:25px"><%= user.name %></th>
@@ -8,6 +8,11 @@
 	</tr>
 	<tr>
 	  <th style="border:none"><%= user.introduction %></th>
+	  <th style="border:none">
+	    <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-sign-out-alt"></i>ログアウト
+      <% end %>
+	  </th>
 	</tr>
 	<tr>
     <th style="border:none">
