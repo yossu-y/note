@@ -2,11 +2,11 @@
   <% users.each do |user| %>
     <table calss="table" width="80%">
         <tr>
-          <%= link_to user_path(user), class: "nav-link text-light" do %>
-            <td><%= image_tag user.get_profile_image, class:"rounded-circle", size: "50x50" %></td>
-            <td><%= user.name %></td>
+          <%= link_to user_path(user), class: "nav-link" do %>
+            <td width="20%"><%= image_tag user.get_profile_image, class:"rounded-circle", size: "50x50" %></td>
+            <td width="50%"><%= user.name %></td>
           <% end %>
-            <td width="10px"><%= render "users/follow", user: user %></td>
+            <td><%= render "users/follow", user: user %></td>
         </tr>
     </table>
   <% end %>
