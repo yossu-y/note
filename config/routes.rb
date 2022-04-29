@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   root to: "homes#top"
 
-  resources :articles, only: [:new,:index,:show,:edit,:create,:destroy,:update] do
+  resources :articles, only: [:new,:index,:show,:edit,:create,:destroy,:update,:comment] do
     resources :article_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end

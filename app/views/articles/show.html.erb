@@ -38,7 +38,7 @@
           <th colspan="2"><%= @article.body %></th>
         </tr>
         <tr>
-          <th width="50%">コメント数:<%= @article.article_comments.count %></th>
+          <th width="50%">コメント<%= @article.article_comments.count %>件</th>
           <% if @article.user == current_user %>
             <th width="10%" align="right">
               <%= link_to "編集", edit_article_path(@article), class: "btn btn-sm btn-success edit_article_#{@article.id}" %>
@@ -72,6 +72,7 @@
           <%= f.submit "送信する" %>
           <% end %>
       </div>
+
     </div>
 
   </div>
