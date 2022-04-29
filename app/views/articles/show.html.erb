@@ -1,25 +1,14 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-3">
-      <h2>User info</h2>
-      <%= render "users/info", user: @article.user %>
-      <h2 class="mt-3">New article</h2>
-      <%= render "form", article: @newarticle %>
-    </div>
-
     <div class="col-md-8 offset-md-1">
-  		<h2>Article detail</h2>
+  		<h4>公開された記事</h4>
   		<table class="table">
   		  <tr>
-          <td><%= link_to (@article.user) do %>
-            <%= image_tag @article.user.get_profile_image, class:"rounded-circle" , size:"100x100" %><br>
-            <%= @article.user.name %>
-            <% end %>
-          </td>
-          <td><%= link_to @article.title, @article %></td>
-          <td><%= @article.body %></td>
-          <td>
+  		    <th style="border:none"><%= link_to @article.title, @article %></th>
+  		  </tr>
+  		  <tr>
+  		    <th  style="border:none">
             <% if @article.favorited_by?(current_user) %>
               <%= link_to article_favorites_path(@article), method: :delete, class:"text-danger" do %>
                 <i class="fas fa-heart"></i><%= @article.favorites.count %>
@@ -29,11 +18,29 @@
                 <i class="fas fa-heart"></i><%= @article.favorites.count %>
               <% end %>
             <% end %>
-          </td>
-          <td>コメント数:<%= @article.article_comments.count %></td>
+          </th>
+  		  </tr>
+  		  <tr>
+          <th rowspan="2"><%= link_to (@article.user) do %>
+            <%= image_tag @article.user.get_profile_image, class:"rounded-circle" , size:"50x50" %><br>
+            <% end %>
+          </th>
+          <th>
+            <%= @article.user.name %>
+          </th>
+        </tr>
+        <tr>
+          <th style="border:none">
+            <%= @article.created_at.strftime("%Y-%m-%d %H:%M") %>
+          </th>
+        </tr>
+
+          <th><%= @article.body %></th>
+
+          <th>コメント数:<%= @article.article_comments.count %></th>
           <% if @article.user == current_user %>
-            <td><%= link_to "Edit", edit_article_path(@article), class: "btn btn-sm btn-success edit_article_#{@article.id}" %></td>
-            <td><%= link_to "Destroy", @article, method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-sm btn-danger destroy_article_#{@article.id}"%></td>
+            <th><%= link_to "Edit", edit_article_path(@article), class: "btn btn-sm btn-success edit_article_#{@article.id}" %></th>
+            <th><%= link_to "Destroy", @article, method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-sm btn-danger destroy_article_#{@article.id}"%></th>
           <% end %>
         </tr>
       </table>
