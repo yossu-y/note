@@ -1,4 +1,4 @@
-<div class="btn btn-sm">
+<div>
   <% if user != current_user %>
     <% if current_user.following?(user) %>
       <%= link_to user_relationships_path(user.id), class: "btn btn-success btn-sm btn-block", method: :delete do %>
