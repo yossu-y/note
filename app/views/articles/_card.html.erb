@@ -12,8 +12,7 @@
                <%= link_to article_path(article.id) do %>
                   <%= image_tag article.get_image, class:"card-img-top", size: "50×50" %>
                 <% end %>
-
-               <div class="card-body">
+               <div class="card-body" style="padding:0">
                  <p class="card-title">
                    <%= link_to article.title,article, class: "article_#{article.id}" %>&nbsp;
                  </p>
