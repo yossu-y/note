@@ -3,6 +3,18 @@
 <table class="table table-inverse" >
     <% articles.each do |article| %>
       <tr>
+        <td>
+          <% if article.image.attached? %>
+            <%= image_tag article.image, size: "50×50" %>
+          <% else %>
+            <%= image_tag "no_image", size: "50×50" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><%= link_to article.title,article, class: "article_#{article.id}" %></td>
+      </tr>
+      <tr>
         <td rowspan="2" width="20%"><%= link_to(article.user) do %>
           <%= image_tag article.user.get_profile_image, class:"rounded-circle", size:"50x50" %>
           <% end %>
@@ -12,12 +24,9 @@
       <tr>
         <td style="border:none"><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
       </tr>
-      <tr>
-        <td colspan="2"><%= link_to article.title,article, class: "article_#{article.id}" %></td>
-      </tr>
-      <tr>
-        <td colspan="2"><%= article.body %></td>
-      </tr>
+      <!--<tr>-->
+        <!--<td colspan="2"><%= article.body %></td>-->
+      <!--</tr>-->
       <tr>
         <td>
           <% if article.favorited_by?(current_user) %>
