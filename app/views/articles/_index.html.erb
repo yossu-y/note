@@ -1,48 +1,44 @@
-<div class="container">
-<div class="row">
-<table class="table table-inverse" >
-    <% articles.each do |article| %>
-      <tr>
-        <td>
-          <% if article.image.attached? %>
-            <%= image_tag article.image, size: "50×50" %>
-          <% else %>
-            <%= image_tag "no_image", size: "50×50" %>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2"><%= link_to article.title,article, class: "article_#{article.id}" %></td>
-      </tr>
-      <tr>
-        <td rowspan="2" width="20%"><%= link_to(article.user) do %>
-          <%= image_tag article.user.get_profile_image, class:"rounded-circle", size:"50x50" %>
-          <% end %>
-        </td>
-        <td><%= article.user.name %></td>
-      </tr>
-      <tr>
-        <td style="border:none"><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-      </tr>
-      <!--<tr>-->
-        <!--<td colspan="2"><%= article.body %></td>-->
-      <!--</tr>-->
-      <tr>
-        <td>
-          <% if article.favorited_by?(current_user) %>
-            <%= link_to article_favorites_path(article), method: :delete, class:"text-danger" do %>
-              <i  class="fas fa-heart"></i><%= article.favorites.count %>
-            <% end %>
-          <% else %>
-            <%= link_to article_favorites_path(article), method: :post do %>
-              <i class="fas fa-heart"></i><%= article.favorites.count %>
-            <% end %>
-          <% end %>
-        </td>
-        <td>コメント<%= article.article_comments.count %>件</td>
-      </tr>
-    <% end %>
-</table><br>
+<div class="articles-wrapper">
+   <div class="contents-title articles-center">
+     <h3>投稿一覧</h3>
+     <div class="row">
+       <% articles.each do |article| %>
 
-</div>
-</div>
+         <div class="col-6 col-md-3 col-lg-2" style="margin:3px">
+
+           <div class="card" style="width:70px height:10px">
+
+             <div class="card-img-top">
+               <%= link_to article_path(article.id) do %>
+                  <%= image_tag article.get_image, class:"card-img-top", size: "50×50" %>
+                <% end %>
+
+               <div class="card-body">
+                 <p class="card-title">
+                   <%= link_to article.title,article, class: "article_#{article.id}" %>&nbsp;
+                 </p>
+                   <%= image_tag article.user.get_profile_image, class:"rounded-circle", size:"40x40" %>
+                   <%= link_to(article.user) do %>
+                     <%= article.user.name %><br>
+                   <% end %>
+                   <% if article.favorited_by?(current_user) %>
+                      <%= link_to article_favorites_path(article), method: :delete, class:"text-danger" do %>
+                        <i  class="fas fa-heart"></i><%= article.favorites.count %>&nbsp;
+                      <% end %>
+                   <% else %>
+                      <%= link_to article_favorites_path(article), method: :post do %>
+                        <i class="fas fa-heart"></i><%= article.favorites.count %>
+                      <% end %>
+                   <% end %>
+                    コメント<%= article.article_comments.count %>件
+               </div>
+
+              </div>
+
+           </div>
+         </div>
+
+       <% end %>
+     </div>
+   </div>
+ </div>

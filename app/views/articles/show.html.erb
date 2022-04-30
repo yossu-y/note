@@ -5,13 +5,9 @@
   		<h4>公開された記事</h4>
   		<table class="table">
   		  <tr>
-        　<td>
-        　 <% if @article.image.attached? %>
-        　     <%= image_tag @article.image, size: "300×300" %>
-        　   <% else %>
-            　<%= image_tag "no_image", size: "100×100" %>
-          　<% end %>
-        　</td>
+  		    <td>
+  		      <%= image_tag @article.get_image, class:"card-img-top",size: "100×300" %>
+  		    </td>
       　</tr>
   		  <tr>
   		    <th style="border:none"><%= link_to @article.title, @article %></th>
