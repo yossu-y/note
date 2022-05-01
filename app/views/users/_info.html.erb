@@ -9,8 +9,10 @@
 	<tr>
 	  <th style="border:none"><%= user.introduction %></th>
 	  <th  style="border:none">
+	    <% if user == current_user %>
 	    <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary btn-block" do %>
         <i class="fas fa-sign-out-alt"></i>ログアウト
+      <% end %>
       <% end %>
 	  </th>
 	</tr>
