@@ -52,24 +52,25 @@
           <% end %>
         </tr>
       </table>
+
       <table>
         <% @article.article_comments.each do |article_comment| %>
           <tr>
             <td>
               <%= link_to(article_comment.user) do %>
-                <%= image_tag article_comment.user.get_profile_image, size:"100x100" %><br>
+                <%= image_tag article_comment.user.get_profile_image,class:"rounded-circle", size:"60x60" %><br>
                 <%= article_comment.user.name %>
               <% end %>
             </td>
-            <td><%= article_comment.comment %></td>
-            <% if article_comment.user == current_user %>
-              <td><%= link_to "削除", article_article_comment_path(article_comment.article, article_comment), method: :delete, class: "btn btn-sm btn-danger" %></td>
-            <% end %>
+            <td width="30%"><%= article_comment.comment %></td>
+          <% if article_comment.user == current_user %>
+            <td margin-left="10px"><%= link_to "削除", article_article_comment_path(article_comment.article, article_comment), method: :delete, class: "btn btn-sm btn-danger" %></td>
+          <% end %>
           </tr>
         <% end %>
       </table>
 
-      <div>
+      <div margin-top="50px">
         <%= form_with model: [@article, @article_comment] do |f| %>
           <%= f.text_area :comment, rows:"5",cols:"50", placeholder: "コメントする" %></br>
           <%= f.submit "送信する" %>
